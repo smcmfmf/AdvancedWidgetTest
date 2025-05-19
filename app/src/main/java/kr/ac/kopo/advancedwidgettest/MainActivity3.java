@@ -25,11 +25,17 @@ public class MainActivity3 extends AppCompatActivity {
         });
         String[] items = {"AISW", "AIRobot", "AIPhoto", "AIVideo", "AIVoice", "AIGemini"};
 
+        // 자동 완성 기능 사용
         AutoCompleteTextView auto1 = findViewById(R.id.auto1);
         MultiAutoCompleteTextView multi = findViewById(R.id.multi1);
         
         // 추천 키워드 배열 어댑터 생성
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, items);
         auto1.setAdapter(adapter); // 자동 완성 텍스트 뷰에 연결
+
+        // 여러 개의 자동 완성 기능 사용 (컴마 기준)
+        MultiAutoCompleteTextView.CommaTokenizer commaToken = new MultiAutoCompleteTextView.CommaTokenizer();
+        multi.setTokenizer(commaToken);
+        multi.setAdapter(adapter);
     }
 }
